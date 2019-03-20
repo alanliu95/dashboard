@@ -3,15 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>hello</title>
-</head>
-<body >
-<h1><span style="color: #000000">data stream</span> </h1>
-<!--/*@thymesVar id="name" type="java.lang.String"*/-->
-<p th:text="${name}">Hello,world!</p>
-<!--<div id="formbackground" style="position:absolute; width:100%; height:100%; z-index:-1">  -->
-<!--<img src="/image/沙滩.jpg" height="100%" width="100%" >  -->
-<!--</div>-->
+    <!--<link th:href="@{/css/bootstrap/bootstrap.min.css}" rel="stylesheet" >-->
+    <link th:href="@{/css/home.css}" rel="stylesheet" >
 
-<!--<img src="/image/pod.png">-->
+</head>
+<body>
+
+<div id="header">
+    <h1>Dashboard</h1>
+</div>
+
+<div id="nav">
+<ul>
+    <li><a href="#">压力</a></li>
+    <li><a href="#">温度</a></li>
+</ul>
+</div>
+
+<div id="section">
+    <h2>London</h2>
+    <p>
+        London is the capital city of England. It is the most populous city in the United Kingdom,
+        with a metropolitan area of over 13 million inhabitants.
+    </p>
+    <p>
+        Standing on the River Thames, London has been a major settlement for two millennia,
+        its history going back to its founding by the Romans, who named it Londinium.
+    </p>
+</div>
+
+<div id="footer">
+    Copyright ? W3Schools.com
+</div>
+
 </body>
 </html>

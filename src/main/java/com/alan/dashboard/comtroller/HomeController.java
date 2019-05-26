@@ -14,17 +14,13 @@ public class HomeController {
         model.addAttribute("name","alan");
         return "home";
     }
+
     @RequestMapping("/test")
     public String test(Model model){
         return "test";
     }
-    @RequestMapping("/data")
-    @ResponseBody
-    public String test(){
-        return ""+new Date();
-    }
 }
- //@RequestMapping(method= RequstMethod.GET)
+//@RequestMapping(method= RequestMethod.GET)
 //查询参数 @RequestParam(value="",defaultValue=  )
-//路径变量 占位符 @RequestMapping(value="/{spittleId}",method= RequstMethod.GET)
+//路径变量 占位符 @RequestMapping(value="/{spittleId}",method= RequestMethod.GET)
 //  @PathVariable("spittleId")

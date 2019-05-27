@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alan.dashboard.mapper.SysStatusMapper" >
+    <resultMap id="BaseResultMap" type="com.alan.dashboard.model.SysStatus" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="ts" property="ts" jdbcType="TIMESTAMP" />
+        <result column="cpu" property="cpuUsage" jdbcType="FLOAT"/>
+        <result column="mem" property="memUsage" jdbcType="FLOAT" />
+    </resultMap>
+    <!--create table sim1(-->
+    <!--id INT NOT NULL AUTO_INCREMENT,-->
+    <!--ts TIMESTAMP NOT NULL,-->
+    <!--cpu FLOAT NOT NULL,-->
+    <!--mem FLOAT NOT NULL,-->
+    <!--PRIMARY KEY ( id )-->
+    <!--);-->
+
+    <!--public class SysStatus {-->
+    <!--private String deviceId;-->
+    <!--private String ts;-->
+    <!--private float cpuUsage;-->
+    <!--private float memUsage;-->
+
+    <sql id="Base_Column_List" >
+        id, ts, cpu, mem
+    </sql>
+
+    <select id="getAll" resultMap="BaseResultMap"  >
+       SELECT 
+       <include refid="Base_Column_List" />
+	   FROM sim2
+    </select>
+
+    <select id="getOne" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
+        SELECT 
+       <include refid="Base_Column_List" />
+	   FROM sim2
+	   WHERE id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="com.alan.dashboard.model.SysStatus" >
+       INSERT INTO 
+       		sim2
+       		(userName,passWord,user_sex) 
+       	VALUES
+       		(#{userName}, #{passWord}, #{userSex})
+    </insert>
+    
+    <update id="update" parameterType="com.alan.dashboard.model.SysStatus" >
+       UPDATE
+        sim2
+       SET 
+       	<if test="userName != null">userName = #{userName},</if>
+       	<if test="passWord != null">passWord = #{passWord},</if>
+       	nick_name = #{nickName}
+       WHERE 
+       		id = #{id}
+    </update>
+    
+    <delete id="delete" parameterType="java.lang.Long" >
+       DELETE FROM
+       		 sim2
+       WHERE 
+       		 id =#{id}
+    </delete>
+
+</mapper>

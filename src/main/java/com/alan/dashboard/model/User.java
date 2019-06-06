@@ -1,4 +1,4 @@
-package com.alan.dashboard;
+package com.alan.dashboard.model;
 
 public class User {
     private String id;

@@ -1,6 +1,6 @@
 package com.alan.dashboard.comtroller;
 
-import com.alan.dashboard.User;
+import com.alan.dashboard.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,6 +1,9 @@
 package com.alan.dashboard.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class SysStatus {
+	@JsonIgnore
 	private String deviceId;
 	private String ts;
 	private Float cpuUsage;
@@ -25,7 +28,7 @@ public class SysStatus {
 	public String getDeviceId() {
 		return deviceId;
 	}
-
+	@JsonIgnore
 	public void setDeviceId(String deviceId) {
 		this.deviceId = deviceId;
 	}

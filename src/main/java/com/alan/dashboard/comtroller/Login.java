@@ -11,16 +11,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class Login {
     @RequestMapping(method = RequestMethod.GET)
     public String login(Model model){
+        //model.addAttribute("hello","haha");
         return "login";
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public String loginForm(User user,Model model){
         System.out.println(""+user);  //表单验证
-        if(true){
-            model.addAttribute("hello","error");
-            return "login";
+        if(user.getId().equals("123")){
+            return "home";
         }
-        return "home";  //重定向？
+        model.addAttribute("hello","账号或者密码错误！");
+        return "login";  //重定向？
     }
 }

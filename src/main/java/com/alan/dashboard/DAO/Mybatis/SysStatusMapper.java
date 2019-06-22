@@ -6,10 +6,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 @Mapper
-//@Repository
+@Repository
 public interface SysStatusMapper {
 	
-	List<SysStatus> getRecords(Integer N);
+	List<SysStatus> getRecords(Integer devId,Integer N);
 
 	SysStatus getOne(Integer id);
 

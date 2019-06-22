@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alan.dashboard.DAO.Mybatis.RecordMapper" >
+
+    <resultMap id="BaseResultMap" type="com.alan.dashboard.model.Record" >
+        <id column="rec_id" property="id" jdbcType="INTEGER" />
+        <result column="dev_id" property="id" jdbcType="INTEGER" />
+        <result column="rec_ts" property="ts" jdbcType="TIMESTAMP" />
+        <result column="rec_cpu" property="cpu"  jdbcType="FLOAT" />
+        <result column="rec_mem" property="mem" jdbcType="FLOAT" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        *
+    </sql>
+
+    <select id="getRowsByDevice" resultMap="BaseResultMap"  >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM records WHERE dev_id=#{devId} order by rec_id desc
+    </select>
+
+</mapper>

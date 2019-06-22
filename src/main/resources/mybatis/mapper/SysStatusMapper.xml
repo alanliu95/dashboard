@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.alan.dashboard.DAO.Mybatis.SysStatusMapper" >
     <resultMap id="BaseResultMap" type="com.alan.dashboard.model.SysStatus" >
-        <id column="id" property="id" jdbcType="INTEGER" />
+        <id column="rec_id" property="id" jdbcType="INTEGER" />
         <result column="ts" property="ts" jdbcType="TIMESTAMP" />
         <result column="cpu" property="cpu" jdbcType="FLOAT"/>
         <result column="mem" property="mem" jdbcType="FLOAT" />
@@ -22,25 +22,25 @@
     <!--private float mem;-->
 
     <sql id="Base_Column_List" >
-        id, ts, cpu, mem
+        rec_id,ts, cpu, mem
     </sql>
 
     <select id="getRecords" resultMap="BaseResultMap"  >
        SELECT 
        <include refid="Base_Column_List" />
-	   FROM sim2 order by id desc limit #{N}
+	   FROM records where dev_id==#{devId} order by rec_id desc limit #{N}
     </select>
 
     <select id="getOne" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
         SELECT 
        <include refid="Base_Column_List" />
-	   FROM sim2
+	   FROM records
 	   WHERE id = #{id}
     </select>
 
     <insert id="insert" parameterType="com.alan.dashboard.model.SysStatus" >
        INSERT INTO 
-       		sim2
+       		records
        		(userName,passWord,user_sex) 
        	VALUES
        		(#{userName}, #{passWord}, #{userSex})
@@ -48,7 +48,7 @@
     
     <update id="update" parameterType="com.alan.dashboard.model.SysStatus" >
        UPDATE
-        sim2
+        records
        SET 
        	<if test="userName != null">userName = #{userName},</if>
        	<if test="passWord != null">passWord = #{passWord},</if>
@@ -59,7 +59,7 @@
     
     <delete id="delete" parameterType="java.lang.Long" >
        DELETE FROM
-       		 sim2
+       		 records
        WHERE 
        		 id =#{id}
     </delete>

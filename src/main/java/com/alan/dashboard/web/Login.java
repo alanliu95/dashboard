@@ -1,4 +1,4 @@
-package com.alan.dashboard.comtroller;
+package com.alan.dashboard.web;
 
 import com.alan.dashboard.model.User;
 import org.springframework.stereotype.Controller;

@@ -1,4 +1,4 @@
-package com.alan.dashboard.mapper;
+package com.alan.dashboard.DAO.Mybatis;
 
 import com.alan.dashboard.model.SysStatus;
 import org.apache.ibatis.annotations.Mapper;
@@ -6,10 +6,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 @Mapper
-@Repository
+//@Repository
 public interface SysStatusMapper {
 	
-	List<SysStatus> getAll();
+	List<SysStatus> getRecords(Integer N);
 
 	SysStatus getOne(Integer id);
 

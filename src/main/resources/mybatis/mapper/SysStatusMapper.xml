@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.alan.dashboard.mapper.SysStatusMapper" >
+<mapper namespace="com.alan.dashboard.DAO.Mybatis.SysStatusMapper" >
     <resultMap id="BaseResultMap" type="com.alan.dashboard.model.SysStatus" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="ts" property="ts" jdbcType="TIMESTAMP" />
-        <result column="cpu" property="cpuUsage" jdbcType="FLOAT"/>
-        <result column="mem" property="memUsage" jdbcType="FLOAT" />
+        <result column="cpu" property="cpu" jdbcType="FLOAT"/>
+        <result column="mem" property="mem" jdbcType="FLOAT" />
     </resultMap>
     <!--create table sim1(-->
     <!--id INT NOT NULL AUTO_INCREMENT,-->
@@ -16,19 +16,19 @@
     <!--);-->
 
     <!--public class SysStatus {-->
-    <!--private String deviceId;-->
+    <!--private String devId;-->
     <!--private String ts;-->
-    <!--private float cpuUsage;-->
-    <!--private float memUsage;-->
+    <!--private float cpu;-->
+    <!--private float mem;-->
 
     <sql id="Base_Column_List" >
         id, ts, cpu, mem
     </sql>
 
-    <select id="getAll" resultMap="BaseResultMap"  >
+    <select id="getRecords" resultMap="BaseResultMap"  >
        SELECT 
        <include refid="Base_Column_List" />
-	   FROM sim2
+	   FROM sim2 order by id desc limit #{N}
     </select>
 
     <select id="getOne" parameterType="java.lang.Integer" resultMap="BaseResultMap" >

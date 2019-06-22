@@ -4,33 +4,33 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class SysStatus {
 	@JsonIgnore
-	private String deviceId;
+	private String devId;
 	private String ts;
-	private Float cpuUsage;
-	private Float memUsage;
+	private Float cpu;
+	private Float mem;
 	private Integer id;
 
 	public SysStatus(String deviceId) {
-		this.deviceId = deviceId;
+		this.devId = deviceId;
 	}
 
 	@Override
 	public String toString() {
 		return "SysStatus{" +
-				"deviceId='" + deviceId + '\'' +
+				"devId='" + devId + '\'' +
 				", ts='" + ts + '\'' +
-				", cpuUsage=" + cpuUsage +
-				", memUsage=" + memUsage +
+				", cpu=" + cpu +
+				", mem=" + mem +
 				", id=" + id +
 				'}';
 	}
 
-	public String getDeviceId() {
-		return deviceId;
+	public String getDevId() {
+		return devId;
 	}
 	@JsonIgnore
-	public void setDeviceId(String deviceId) {
-		this.deviceId = deviceId;
+	public void setDevId(String devId) {
+		this.devId = devId;
 	}
 
 	public String getTs() {
@@ -41,20 +41,20 @@ public class SysStatus {
 		this.ts = ts;
 	}
 
-	public Float getCpuUsage() {
-		return cpuUsage;
+	public Float getCpu() {
+		return cpu;
 	}
 
-	public void setCpuUsage(Float cpuUsage) {
-		this.cpuUsage = cpuUsage;
+	public void setCpu(Float cpu) {
+		this.cpu = cpu;
 	}
 
-	public Float getMemUsage() {
-		return memUsage;
+	public Float getMem() {
+		return mem;
 	}
 
-	public void setMemUsage(Float memUsage) {
-		this.memUsage = memUsage;
+	public void setMem(Float mem) {
+		this.mem = mem;
 	}
 
 	public Integer getId() {

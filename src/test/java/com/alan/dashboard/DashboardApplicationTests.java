@@ -1,7 +1,6 @@
 package com.alan.dashboard;
 
-import com.alan.dashboard.mapper.SysStatusMapper;
-import com.alan.dashboard.model.SysStatus;
+import com.alan.dashboard.DAO.Mybatis.SysStatusMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

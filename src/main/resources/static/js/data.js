@@ -24,6 +24,25 @@ function query() {
     xmlhttp.open("get","/event?id="+id,true);
     xmlhttp.send();
 }
+
+function query2() {
+    var id =document.getElementById("recordId").value;
+    var xmlhttp= new XMLHttpRequest();
+    xmlhttp.onreadystatechange=
+        function () {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+                document.getElementById("SIM1").innerHTML=xmlhttp.responseText;
+
+            }
+        }
+    ;
+    //console.debug("/event?id="+id);
+    xmlhttp.open("get","/event?id="+id,true);
+    xmlhttp.send();
+}
+
+
 function getEvent() {
     var xmlhttp= new XMLHttpRequest();
     xmlhttp.onreadystatechange=

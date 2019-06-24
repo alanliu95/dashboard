@@ -39,7 +39,36 @@ function query2() {
     httpReq.open("get","/event?id="+id,true);
     httpReq.send();
 }
+var inited=0;
+var myChart;
+function lineChart(recJson) {
+    if(inited==0){
+        inited=1;
+        myChart = echarts.init(document.getElementById('main'));
+    }
+    console.debug(recJson["ts"]);
 
+    // 指定图表的配置项和数据
+    var option = {
+        xAxis: {
+            type: 'category',
+            data: recJson["ts"],
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [{
+            data: recJson["cpu"],
+            type: 'line'
+        },{
+            data: recJson["mem"],
+            type: 'line'
+        }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+}
 function getRecords() {
     var id =document.getElementById("device").value;
     var httpReq= new XMLHttpRequest();
@@ -47,8 +76,10 @@ function getRecords() {
         function () {
             if (httpReq.readyState==4 && httpReq.status==200)
             {
+                var text=httpReq.responseText;
                 document.getElementById("record").innerHTML=httpReq.responseText;
-
+                var recsJson=JSON.parse(text);
+                lineChart(recsJson);
             }
         };
     httpReq.open("get","/data/records?devName="+id,true);

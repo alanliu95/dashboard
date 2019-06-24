@@ -7,10 +7,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.*;
@@ -33,13 +30,16 @@ public class DataController {
 //        return str;
 //    }
     @GetMapping("/data/devices")
+    @ResponseBody
     public String devices ()throws Exception{
      String json=recordService.getSiteAndDev();
     return json;
 }
     @GetMapping("/data/records")
-    public String records (@RequestParam(value="devId",defaultValue = "1") int devID)throws Exception{
-        recordService.setCurr(devID);
+    @ResponseBody
+    public String records (@RequestParam(value="devName",defaultValue = "1") String devName)throws Exception{
+        System.out.println(devName);
+        recordService.setCurr(devName);
         return recordService.getRecords();
     }
 

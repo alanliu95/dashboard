@@ -8,5 +8,6 @@ import java.util.List;
 @Mapper
 @Repository
 public interface DeviceMapper {
-    List<Device> getRowsBySite(int siteId);
+    public List<Device> getRowsBySite(int siteId);
+    public Device getOneByName(String name);
 }

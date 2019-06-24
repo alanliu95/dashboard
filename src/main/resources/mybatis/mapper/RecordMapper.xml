@@ -3,20 +3,32 @@
 <mapper namespace="com.alan.dashboard.DAO.Mybatis.RecordMapper" >
 
     <resultMap id="BaseResultMap" type="com.alan.dashboard.model.Record" >
-        <id column="rec_id" property="id" jdbcType="INTEGER" />
-        <result column="dev_id" property="id" jdbcType="INTEGER" />
-        <result column="rec_ts" property="ts" jdbcType="TIMESTAMP" />
-        <result column="rec_cpu" property="cpu"  jdbcType="FLOAT" />
-        <result column="rec_mem" property="mem" jdbcType="FLOAT" />
+        <!--<id column="rec_id" property="id" jdbcType="INTEGER" />-->
+        <!--<result column="dev_id12" property="DevId" jdbcType="INTEGER" />-->
+        <!--<result column="rec_ts34" property="ts" jdbcType="TIMESTAMP" />-->
+        <!--<result column="rec_cpu34" property="cpu"  jdbcType="FLOAT" />-->
+        <!--<result column="rec_mem45" property="mem" jdbcType="FLOAT" />-->
     </resultMap>
 
-    <sql id="Base_Column_List" >
-        *
-    </sql>
+    <resultMap id="tsMap" type="com.alibaba.fastjson.JSONObject">
+        <result column="ts" property="ts" jdbcType="TIMESTAMP"/>
+        <result column="cpu" property="cpu"/>
+        <result column="mem" property="mem"/>
+    </resultMap>
+
+    <select id="getTs" resultMap="tsMap">
+      SELECT
+      ts,
+      cpu,
+      mem
+      FROM records
+      where dev_id = #{devId}
+
+    </select>
 
     <select id="getRowsByDevice" resultMap="BaseResultMap"  >
         SELECT
-        <include refid="Base_Column_List" />
+        *
         FROM records WHERE dev_id=#{devId} order by rec_id desc
     </select>
 

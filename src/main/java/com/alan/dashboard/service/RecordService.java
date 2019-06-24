@@ -6,6 +6,8 @@ import com.alan.dashboard.DAO.Mybatis.SiteMapper;
 import com.alan.dashboard.model.Device;
 import com.alan.dashboard.model.Record;
 import com.alan.dashboard.model.Site;
+import com.alan.dashboard.utils.model.RecJson;
+import com.alibaba.fastjson.JSONObject;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class RecordService {
@@ -44,11 +47,26 @@ public class RecordService {
         return json;
     }
 
-    public void setCurr(int devId){
-        this.currDev=devId;
+    public void setCurr(String devName){
+        Device d=deviceMapper.getOneByName(devName);
+        this.currDev=d.getId();
     }
     public String getRecords() throws Exception{
         List<Record> recList=recordMapper.getRowsByDevice(this.currDev);
+        RecJson recJson=new RecJson();
+        recJson.ts = recList.stream().map(Record::getTs).collect(Collectors.toList());
+        recJson.cpu = recList.stream().map(Record::getCpu).collect(Collectors.toList());
+        recJson.mem = recList.stream().map(Record::getMem).collect(Collectors.toList());
+        return jsonMapper.writeValueAsString(recJson);
+    }
+
+    public String getRecords2() throws Exception{
+        List<JSONObject> recList=recordMapper.getTs(this.currDev);
+        //RecJson recJson=
+        for(JSONObject j : recList){
+            System.out.println(j);
+
+        }
         return jsonMapper.writeValueAsString(recList);
     }
 

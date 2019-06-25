@@ -49,8 +49,8 @@ public class DashboardApplicationTests {
     public void service() throws Exception {
 
         //recordService.getSiteAndDev();
-        recordService.setCurr("ubuntu_14th");
-        System.out.println(recordService.getRecords());
+        //recordService.setCurr("ubuntu_14th");
+        System.out.println(recordService.getRecords("ubuntu_14th"));
         //recordService.getRecords2();
     }
     //@Test

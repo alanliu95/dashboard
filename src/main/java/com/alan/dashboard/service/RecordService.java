@@ -26,8 +26,7 @@ public class RecordService {
     private RecordMapper recordMapper;
     @Autowired
     private ObjectMapper jsonMapper;
-    private int currSite;
-    private int currDev;
+
     @Autowired
     public RecordService(SiteMapper siteMapper, DeviceMapper deviceMapper, RecordMapper recordMapper) {
         this.siteMapper = siteMapper;
@@ -43,16 +42,13 @@ public class RecordService {
             map.put(site.getName(),devs);
         }
         String json=jsonMapper.writeValueAsString(map);
-        System.out.println(json);
+        //System.out.println(json);
         return json;
     }
 
-    public void setCurr(String devName){
+    public String getRecords(String devName) throws Exception{
         Device d=deviceMapper.getOneByName(devName);
-        this.currDev=d.getId();
-    }
-    public String getRecords() throws Exception{
-        List<Record> recList=recordMapper.getRowsByDevice(this.currDev);
+        List<Record> recList=recordMapper.getRowsByDevice(d.getId());
         RecJson recJson=new RecJson();
         recJson.ts = recList.stream().map(Record::getTs).collect(Collectors.toList());
         recJson.cpu = recList.stream().map(Record::getCpu).collect(Collectors.toList());
@@ -60,14 +56,14 @@ public class RecordService {
         return jsonMapper.writeValueAsString(recJson);
     }
 
-    public String getRecords2() throws Exception{
-        List<JSONObject> recList=recordMapper.getTs(this.currDev);
-        //RecJson recJson=
-        for(JSONObject j : recList){
-            System.out.println(j);
-
-        }
-        return jsonMapper.writeValueAsString(recList);
-    }
+//    public String getRecords2() throws Exception{
+//        List<JSONObject> recList=recordMapper.getTs(this.currDev);
+//        //RecJson recJson=
+//        for(JSONObject j : recList){
+//            System.out.println(j);
+//
+//        }
+//        return jsonMapper.writeValueAsString(recList);
+//    }
 
 }

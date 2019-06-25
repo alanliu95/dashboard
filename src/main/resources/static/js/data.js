@@ -55,12 +55,19 @@ function lineChart(recJson) {
             data: recJson["ts"],
         },
         yAxis: {
-            type: 'value'
+            type: 'value',
+            max: 100,
+            min: 0
+        },
+        legend: {
+            data:['cpu利用率','mem利用率']
         },
         series: [{
+            name: 'cpu利用率',
             data: recJson["cpu"],
             type: 'line'
         },{
+            name: 'mem利用率',
             data: recJson["mem"],
             type: 'line'
         }]

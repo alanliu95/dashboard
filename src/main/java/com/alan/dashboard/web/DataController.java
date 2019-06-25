@@ -37,10 +37,9 @@ public class DataController {
 }
     @GetMapping("/data/records")
     @ResponseBody
-    public String records (@RequestParam(value="devName",defaultValue = "1") String devName)throws Exception{
-        System.out.println(devName);
-        recordService.setCurr(devName);
-        return recordService.getRecords();
+    public String records (@RequestParam(value="devName") String devName)throws Exception{
+        //System.out.println(devName);
+        return recordService.getRecords(devName);
     }
 
 }

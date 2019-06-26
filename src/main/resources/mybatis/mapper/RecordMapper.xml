@@ -27,9 +27,7 @@
     </select>
 
     <select id="getRowsByDevice" resultMap="BaseResultMap"  >
-        SELECT
-        *
-        FROM records WHERE dev_id=#{devId} order by ts limit 10
+     select t.* from (select * from records where dev_id=#{devId} order by ts desc limit 10) t order by t.ts
     </select>
 
 </mapper>

@@ -2,17 +2,33 @@ package com.alan.dashboard.model;
 
 public class Record {
     private int id;
-    private int DevId;
+    private int devId;
+    private String devToken;
     private String ts;
     private float cpu;
     private float mem;
 
-    public Record(int id, int devId, String ts, float cpu, float mem) {
-        this.id = id;
-        DevId = devId;
-        this.ts = ts;
-        this.cpu = cpu;
-        this.mem = mem;
+    @Override
+    public String toString() {
+        return "Record{" +
+                "id=" + id +
+                ", devId=" + devId +
+                ", devToken='" + devToken + '\'' +
+                ", ts='" + ts + '\'' +
+                ", cpu=" + cpu +
+                ", mem=" + mem +
+                '}';
+    }
+
+    public Record newCopy(){
+        Record r=new Record();
+        r.id=id;
+        r.devId=devId;
+        r.devToken=devToken;
+        r.ts=ts;
+        r.cpu=cpu;
+        r.mem=mem;
+        return r;
     }
 
     public int getId() {
@@ -24,11 +40,19 @@ public class Record {
     }
 
     public int getDevId() {
-        return DevId;
+        return devId;
     }
 
     public void setDevId(int devId) {
-        DevId = devId;
+        this.devId = devId;
+    }
+
+    public String getDevToken() {
+        return devToken;
+    }
+
+    public void setDevToken(String devToken) {
+        this.devToken = devToken;
     }
 
     public String getTs() {

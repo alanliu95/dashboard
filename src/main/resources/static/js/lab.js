@@ -1,44 +1,3 @@
-//refresh();
-function refresh() {
-    window.setInterval(getEvent,2000);
-}
-function query() {
-    var id =document.getElementById("recordId").value;
-    var xmlhttp= new XMLHttpRequest();
-    xmlhttp.onreadystatechange=
-        function () {
-            if (xmlhttp.readyState==4 && xmlhttp.status==200)
-            {
-                //document.getElementById("SIM1").innerHTML=xmlhttp.responseText;
-                var record=JSON.parse(xmlhttp.responseText);
-                //console.debug("hello");
-                document.getElementById("sim1-ts").innerHTML=record.ts;
-                document.getElementById("sim1-cpu").innerHTML=record.cpuUsage;
-                document.getElementById("sim1-mem").innerHTML=record.memUsage;
-
-//{"deviceId":"1","ts":"2019-03-24 22:38:07","cpuUsage":69.1146,"memUsage":93.8266,"id":1}
-            }
-        }
-    ;
-    //console.debug("/event?id="+id);
-    xmlhttp.open("get","/event?id="+id,true);
-    xmlhttp.send();
-}
-
-function query2() {
-    var id =document.getElementById("recordId").value;
-    var httpReq= new XMLHttpRequest();
-    httpReq.onreadystatechange=
-        function () {
-            if (httpReq.readyState==4 && httpReq.status==200)
-            {
-                document.getElementById("SIM1").innerHTML=httpReq.responseText;
-
-            }
-        };
-    httpReq.open("get","/event?id="+id,true);
-    httpReq.send();
-}
 var inited=0;
 var myChart;
 function lineChart(recJson) {
@@ -89,7 +48,7 @@ function getRecords() {
                 lineChart(recsJson);
             }
         };
-    httpReq.open("get","/data/records?devName="+id,true);
+    httpReq.open("get","/data/records?currDevName="+id,true);
     httpReq.send();
 }
 
@@ -138,23 +97,26 @@ window.onload=function(){
     httpReq.open("get","/data/devices",true);
     httpReq.send();
 }
-
-function getEvent() {
-    var xmlhttp= new XMLHttpRequest();
-    xmlhttp.onreadystatechange=
+function init(){
+    var httpReq= new XMLHttpRequest();
+    httpReq.onreadystatechange=
         function () {
-            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            if (httpReq.readyState==4 && httpReq.status==200)
             {
-                //document.getElementById("SIM1").innerHTML=xmlhttp.responseText;
-                var record=JSON.parse(xmlhttp.responseText);
-                //console.debug("hello");
-                document.getElementById("sim1-ts").innerHTML=record.ts;
-                document.getElementById("sim1-cpu").innerHTML=record.cpuUsage;
-                document.getElementById("sim1-mem").innerHTML=record.memUsage;//{"deviceId":"1","ts":"2019-03-24 22:38:07","cpuUsage":69.1146,"memUsage":93.8266,"id":1}
+                var slt=document.getElementById("site");
+                //document.getElementById("debug").innerHTML=httpReq.responseText;
+                devs=JSON.parse(httpReq.responseText);
+                for(var k in devs){
+                    var objOption=document.createElement("OPTION");
+                    objOption.text=k;
+                    objOption.value=k;
+                    slt.add(objOption);
+                }
+                setDev();
             }
-        }
-    ;
-    xmlhttp.open("get","/event",true);
-    xmlhttp.send();
-
+        };
+    httpReq.open("get","/data/devices",true);
+    httpReq.send();
 }
+console.debug('i am from lab.js');
+init();

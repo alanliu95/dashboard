@@ -4,7 +4,7 @@
 
     <resultMap id="BaseResultMap" type="com.alan.dashboard.model.Record" >
         <id column="rec_id"     property="id"       jdbcType="INTEGER" />
-        <result column="dev_id" property="DevId"    jdbcType="INTEGER" />
+        <result column="dev_id" property="devId"    jdbcType="INTEGER" />
         <result column="ts"     property="ts"       />
         <result column="mem"    property="mem"      jdbcType="FLOAT" />
         <result column="cpu"    property="cpu"      jdbcType="FLOAT" />
@@ -27,7 +27,7 @@
     </select>
 
     <select id="getRowsByDevice" resultMap="BaseResultMap"  >
-     select t.* from (select * from records where dev_id=#{devId} order by ts desc limit 10) t order by t.ts
+     select t.* from (select * from records where dev_id=#{devId} order by ts desc limit 30) t order by t.ts
     </select>
 
 </mapper>

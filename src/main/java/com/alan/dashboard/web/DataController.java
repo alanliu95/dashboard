@@ -33,6 +33,7 @@ public class DataController {
 //        //System.out.println(str);
 //        return str;
 //    }
+    //ArrayList
     @GetMapping("/data/devices")
     @ResponseBody
     public String devices ()throws Exception{
@@ -45,7 +46,7 @@ public class DataController {
         //System.out.println(currDevName);
         return recordService.getRecords(devName);
     }
-
+    //RestTemplate
 //    @GetMapping("/devices/{currDevName}")
 //    @ResponseBody
 //    public String record(@PathVariable("currDevName") String currDevName) throws Exception{

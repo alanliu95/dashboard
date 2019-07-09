@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Dashboard</title>
+    <!--<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <!--<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>-->
+    <!--<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script src="http://localhost:10086/js/main.js?r=12"></script>
+
+</head>
+<body>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand active" href="#">ECUST</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav">
+                <li><a href="#">设备管理</a></li>
+                <li><a href="#">设备状态</a></li>
+                <li><a onclick="currentPage()" href="#">实时数据</a></li>
+                <li><a onclick="historyPage()" href="#">历史数据</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="home-container" class="container-fluid">
+</div>
+</body>
+</html>

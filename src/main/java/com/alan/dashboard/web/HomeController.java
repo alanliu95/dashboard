@@ -12,10 +12,10 @@ public class HomeController {
         return "main";
     }
 
-    @RequestMapping("/test")
-    public String test(Model model){
-        return "test";
-    }
+//    @RequestMapping("/test")
+//    public String test(Model model){
+//        return "test";
+//    }
 }
 //@RequestMapping(method= RequestMethod.GET)
 //查询参数 @RequestParam(value="",defaultValue=  )

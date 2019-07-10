@@ -6,12 +6,26 @@ function currentPage() {
     clearInterval(timerId);
     // console.debug("currentPage");
     $('#home-container').empty();
-    $('#home-container').load('/current.html');
+    $('#home-container').load('/current');
 }
 
 function historyPage() {
     clearInterval(timerId);
     // console.debug("historyPage");
     $('#home-container').empty();
-    $('#home-container').load('/history.html');
+    $('#home-container').load('/history');
+}
+
+function deviceManagement() {
+    clearInterval(timerId);
+    // console.debug("currentPage");
+    $('#home-container').empty();
+    $('#home-container').load('/deviceManagement');
+}
+
+function deviceStatus() {
+    clearInterval(timerId);
+    // console.debug("historyPage");
+    $('#home-container').empty();
+    $('#home-container').load('/deviceStatus');
 }

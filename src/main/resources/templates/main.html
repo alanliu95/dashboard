@@ -10,7 +10,7 @@
     <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
     <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
     <script th:src="@{/js/bootstrap.min.js}"></script>
-    <script src="http://localhost:10086/js/main.js?r=12"></script>
+    <script src="/js/main.js?r=12"></script>
 
 </head>
 <body>
@@ -21,8 +21,9 @@
         </div>
         <div>
             <ul class="nav navbar-nav">
-                <li><a href="#">设备管理</a></li>
-                <li><a href="#">设备状态</a></li>
+                <li><a onclick="deviceManagement()" href="#">设备管理</a></li>
+                <!--<li> <button onclick="deviceManagement()">设备管理</button></li>-->
+                <li><a onclick="deviceStatus()" href="#">设备状态</a></li>
                 <li><a onclick="currentPage()" href="#">实时数据</a></li>
                 <li><a onclick="historyPage()" href="#">历史数据</a></li>
             </ul>
@@ -31,6 +32,8 @@
 </nav>
 
 <div id="home-container" class="container-fluid">
+    <h1>主页</h1>
+    <h2>主页</h2>
 </div>
 </body>
 </html>

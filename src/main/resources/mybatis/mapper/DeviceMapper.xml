@@ -20,6 +20,12 @@
         FROM devices where site_id = #{siteId} order by dev_id
     </select>
 
+    <select id="getAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM devices order by site_id,dev_id
+    </select>
+
     <select id="getOneByName" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List" />

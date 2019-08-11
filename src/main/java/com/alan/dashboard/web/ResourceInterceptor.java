@@ -18,7 +18,7 @@ public class ResourceInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
         String url = request.getRequestURI();
-        logger.debug("preHandle url:" + url);
+        logger.debug("preHandle url: " + url);
         HttpSession session = request.getSession();
         String username = (String) session.getAttribute("username");
         if (username != null)

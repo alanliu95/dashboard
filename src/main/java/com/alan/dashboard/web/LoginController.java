@@ -20,21 +20,32 @@ public class LoginController {
         return "login";
     }
 
+    /**
+     * 该方法用于处理登陆请求，表单的字段需要和类User字段一一对应
+     *
+     * @param user
+     * @param request
+     * @param response
+     * @param model
+     * @return
+     */
     @RequestMapping(method = RequestMethod.POST)
-    public String loginForm(User user, HttpServletRequest request, HttpServletResponse response, ModelAndView modelAndView) {
+    public String loginForm(User user, HttpServletRequest request, HttpServletResponse response, Model model) {
 //        System.out.println(""+user);  //表单验证
 //        if(user.getId().equals("123")){
 //            return "home";
 //        }
 //        model.addAttribute("hello","账号或者密码错误！");
 //        return "login";  //重定向？
-        System.out.println("" + user);
+        //System.out.println("" + user);
         if (user.getId().equals("123") && user.getPw().equals("123")) {
-            HttpSession session = request.getSession();
-            session.setAttribute("username", "123");
-            //System.out.println("新建session,添加username属性");
+//            HttpSession session = request.getSession();
+//            session.setAttribute("username", "123");
+            request.getSession().setAttribute("username", "123");
+            //重定向到首页
             return "redirect:/";
         }
+        model.addAttribute("msg", "账号或者密码错误！");
         return "login";
     }
 }

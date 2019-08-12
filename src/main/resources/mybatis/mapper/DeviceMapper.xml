@@ -10,25 +10,49 @@
         <result column="dev_info" property="info" jdbcType="VARCHAR" />
     </resultMap>
 
-    <sql id="Base_Column_List" >
-        *
-    </sql>
-
-    <select id="getRowsBySite" resultMap="BaseResultMap">
+    <select id="getRowsBySiteId" resultMap="BaseResultMap" parameterType="int">
         SELECT
-        <include refid="Base_Column_List" />
+        *
         FROM devices where site_id = #{siteId} order by dev_id
     </select>
 
+    <insert id="addDevice" parameterType="com.alan.dashboard.model.Device">
+    insert into devices(site_id, dev_name, dev_token, dev_info) values(#{siteId},#{name},#{token},#{info})
+    </insert>
+
+    <delete id="delRowsBySiteId" parameterType="int">
+        delete from devices where site_id=#{siteId}
+    </delete>
+
+    <delete id="deleteDeviceById" parameterType="int">
+        delete from devices where dev_id=#{devId}
+    </delete>
+
     <select id="getAll" resultMap="BaseResultMap">
         SELECT
-        <include refid="Base_Column_List"/>
+        *
         FROM devices order by site_id,dev_id
     </select>
 
-    <select id="getOneByName" resultMap="BaseResultMap">
+    <select id="getOneByName" resultType="com.alan.dashboard.model.Device" parameterType="String">
         SELECT
-        <include refid="Base_Column_List" />
+        dev_id as id,site_id as siteId, dev_name as name, dev_token as token, dev_info as info
         FROM devices where dev_name = #{name}
+    </select>
+
+    <resultMap id="devSiteMap" type="com.alan.dashboard.model.DeviceMap">
+        <id property="siteId" column="site_id"/>
+        <result property="siteName" column="site_name"/>
+        <collection property="deviceList" ofType="com.alan.dashboard.model.Device">
+            <id column="dev_id" property="id" jdbcType="INTEGER"/>
+            <result column="site_id" property="siteId"/>
+            <result column="dev_name" property="name"/>
+            <result column="dev_token" property="token"/>
+            <result column="dev_info" property="info"/>
+        </collection>
+    </resultMap>
+
+    <select id="getMap" resultMap="devSiteMap">
+        select s.site_id, s.site_name, d.* from sites s left join devices d on s.site_id = d.site_id
     </select>
 </mapper>

@@ -37,7 +37,7 @@ public class RecordService {
         Map<String,List<String>> map=new HashMap<>();
         for(Site site : siteMapper.getAll()){
             List<String> devs=new ArrayList<>();
-            for(Device dev : deviceMapper.getRowsBySite(site.getId()))
+            for (Device dev : deviceMapper.getRowsBySiteId(site.getId()))
                 devs.add(dev.getName());
             map.put(site.getName(),devs);
         }

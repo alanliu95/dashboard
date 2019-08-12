@@ -3,7 +3,7 @@ var currDevName;
 
 $(document).ready(function () {
     //console.debug("init:::::::dom加载完成，开始获取dev");
-    initSiteSlt();
+    //initSiteSlt();
 });
 
 function initSiteSlt() {
@@ -27,21 +27,29 @@ function initSiteSlt() {
     httpReq.send();
 }
 
-// 下拉列表“场地”被修改时，触发 设置下拉列表“设备”的选项
-function refreshDevSlt() {
+// // 下拉列表“场地”被修改时，触发 设置下拉列表“设备”的选项
+// function refreshDevSlt() {
+//     var siteSlt = document.getElementById("site");
+//     //获取列表当前选中值的索引
+//     var index = siteSlt.selectedIndex;
+//     //if(index==0) return;
+//     var siteVal = siteSlt.options[index].text;
+//     var devSlt = document.getElementById("device");
+//     //清空devSlt值
+//     devSlt.length = 0;
+//     //全局变量 devs
+//     var arrDev = devs[siteVal];
+//     for (var i = 0; i < arrDev.length; i++) {
+//         devSlt[i] = new Option(arrDev[i], arrDev[i]);
+//     }
+// }
+function refreshDevList() {
     var siteSlt = document.getElementById("site");
     //获取列表当前选中值的索引
     var index = siteSlt.selectedIndex;
-    //if(index==0) return;
-    var siteVal = siteSlt.options[index].text;
-    var devSlt = document.getElementById("device");
-    //清空devSlt值
-    devSlt.length = 0;
-    //全局变量 devs
-    var arrDev = devs[siteVal];
-    for (var i = 0; i < arrDev.length; i++) {
-        devSlt[i] = new Option(arrDev[i], arrDev[i]);
-    }
+    var siteVal = siteSlt.options[index].value;
+    devManageUrlSuffix = '?siteId=' + siteVal;
+    $('#home-container').load('/deviceManagement' + devManageUrlSuffix);
 }
 
 function getStatus() {

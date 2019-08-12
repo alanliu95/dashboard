@@ -18,12 +18,7 @@
 
     <select id="getTs" resultMap="tsMap">
       SELECT
-      ts,
-      cpu,
-      mem
-      FROM records
-      where dev_id = #{devId}
-
+      ts, cpu,mem FROM records where dev_id = #{devId}
     </select>
 
     <select id="getRowsByDevice" resultMap="BaseResultMap"  >

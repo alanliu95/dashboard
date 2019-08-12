@@ -1,11 +1,14 @@
 package com.alan.dashboard.web;
 
 import com.alan.dashboard.DAO.Mybatis.DeviceMapper;
+import com.alan.dashboard.DAO.Mybatis.SiteMapper;
 import com.alan.dashboard.model.Device;
+import com.alan.dashboard.model.Site;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -13,6 +16,8 @@ import java.util.List;
 public class PageController {
     @Autowired
     DeviceMapper deviceMapper;
+    @Autowired
+    SiteMapper siteMapper;
     @RequestMapping("/")
     public String home(Model model){
         //model.addAttribute("name","alan");
@@ -20,8 +25,11 @@ public class PageController {
     }
 
     @RequestMapping("/deviceManagement")
-    public String deviceManagement(Model model) {
-        List<Device> devList = deviceMapper.getAll();
+    public String deviceManagement(@RequestParam(value = "SiteId", defaultValue = "0") String siteId, Model model) {
+        int id = Integer.parseInt(siteId);
+        List<Site> siteList = siteMapper.getAll();
+        model.addAttribute("siteList", siteList);
+        List<Device> devList = deviceMapper.getRowsBySiteId(siteList.get(id).getId());
         model.addAttribute("devList", devList);
         return "deviceManagement";
     }

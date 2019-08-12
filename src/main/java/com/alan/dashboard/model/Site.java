@@ -12,6 +12,15 @@ public class Site {
                 '}';
     }
 
+    public Site(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Site(String name) {
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }

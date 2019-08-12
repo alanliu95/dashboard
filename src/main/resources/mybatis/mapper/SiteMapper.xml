@@ -7,14 +7,27 @@
         <result column="site_name" property="name" jdbcType="VARCHAR" />
     </resultMap>
 
-    <sql id="Base_Column_List" >
-        *
-    </sql>
 
     <select id="getAll" resultMap="BaseResultMap"  >
         SELECT
-        <include refid="Base_Column_List" />
+        *
         FROM sites order by site_id desc
     </select>
 
+    <insert id="addSite" parameterType="com.alan.dashboard.model.Site"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into sites(site_name) values (#{name})
+    </insert>
+
+    <delete id="deleteSiteById" parameterType="int">
+        delete from sites where site_id=#{id}
+    </delete>
+
+    <update id="updateSite" parameterType="com.alan.dashboard.model.Site">
+        update sites set site_name=#{name } where site_id=#{id}
+    </update>
+
+    <select id="getAllWithMap" resultType="map">
+        select site_id,site_name from sites order by site_id
+    </select>
 </mapper>

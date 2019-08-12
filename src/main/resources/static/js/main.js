@@ -16,11 +16,12 @@ function historyPage() {
     $('#home-container').load('/history');
 }
 
+var devManageUrlSuffix = '';
 function deviceManagement() {
     clearInterval(timerId);
     // console.debug("currentPage");
     $('#home-container').empty();
-    $('#home-container').load('/deviceManagement');
+    $('#home-container').load('/deviceManagement' + devManageUrlSuffix);
 }
 
 function deviceStatus() {

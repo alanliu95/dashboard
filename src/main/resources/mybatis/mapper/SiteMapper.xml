@@ -7,6 +7,13 @@
         <result column="site_name" property="name" jdbcType="VARCHAR" />
     </resultMap>
 
+    <sql id="allColumns">site_id as id, site_name as name</sql>
+    <select id="getAllWithResultType" resultType="com.alan.dashboard.model.Site">
+        SELECT
+        <include refid="allColumns"/>
+        FROM sites order by site_id desc
+    </select>
+
 
     <select id="getAll" resultMap="BaseResultMap"  >
         SELECT

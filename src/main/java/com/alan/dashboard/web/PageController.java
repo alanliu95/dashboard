@@ -7,8 +7,10 @@ import com.alan.dashboard.model.Site;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -25,15 +27,28 @@ public class PageController {
     }
 
     @RequestMapping("/deviceManagement")
-    public String deviceManagement(@RequestParam(value = "SiteId", defaultValue = "0") String siteId, Model model) {
-        int id = Integer.parseInt(siteId);
+    public String deviceManagement(@RequestParam(value = "siteId", defaultValue = "") String siteId, Model model) {
+
         List<Site> siteList = siteMapper.getAll();
         model.addAttribute("siteList", siteList);
-        List<Device> devList = deviceMapper.getRowsBySiteId(siteList.get(id).getId());
+
+        int id;
+        if (siteId.length() != 0) id = Integer.parseInt(siteId);
+        else id = siteList.get(0).getId();
+        //System.out.println(id);
+        List<Device> devList = deviceMapper.getRowsBySiteId(id);
         model.addAttribute("devList", devList);
+        model.addAttribute("siteId", id);
         return "deviceManagement";
     }
 
+    @PostMapping("/deviceManagement/addDevice")
+    @ResponseBody
+    public String addDevice(Device device, Model model) {
+        System.out.println(device);
+        deviceMapper.addDevice(device);
+        return "inserted successfully";
+    }
     @RequestMapping("/deviceStatus")
     public String deviceStatus(Model model) {
         return "deviceStatus";

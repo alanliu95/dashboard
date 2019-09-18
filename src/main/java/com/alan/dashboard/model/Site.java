@@ -1,8 +1,19 @@
 package com.alan.dashboard.model;
 
+import java.util.List;
+
 public class Site {
     private int id;
     private String name;
+    private List<Device> deviceList;
+
+    public List<Device> getDeviceList() {
+        return deviceList;
+    }
+
+    public void setDeviceList(List<Device> deviceList) {
+        this.deviceList = deviceList;
+    }
 
     @Override
     public String toString() {

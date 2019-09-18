@@ -9,9 +9,11 @@
 <div style="margin-bottom: 20px">
     场地：<select data-width="80px" id="site" style="width:150px; display: inline-block"
                class="form-control">
-    <option th:each="site: ${siteList}" th:text="${site.name}" th:value="${site.id}"></option>
+    <option th:each="site: ${siteList}" th:selected="${site.id}==${siteId}" th:text="${site.name}"
+            th:value="${site.id}"></option>
 </select>
     <button onclick="refreshDevList()" class="btn btn-primary">查询</button>
+    <button onclick="displayForm()" class="btn btn-primary">添加设备</button>
 </div>
 <div class="row">
     <div class="col-md-4">
@@ -23,6 +25,7 @@
                 <th>设备</th>
                 <th>令牌</th>
                 <th>info</th>
+                <th>操作</th>
             </tr>
             </thead>
             <!--private int id;-->
@@ -36,11 +39,37 @@
                 <td th:text="${dev.name}">Otto</td>
                 <td th:text="${dev.token}">6</td>
                 <td th:text="${dev.info}">6</td>
+                <td>
+                    <button>修改</button>
+                    <button>删除</button>
+                </td>
             </tr>
             </tbody>
         </table>
     </div>
 </div>
+<div id="form-container" style="display:none">
+    <form id="devForm" action="/deviceManagement/addDevice" method="post"
+          target="targetIfr">
+        <!--    onsubmit="postNewDev(); deviceManagement(); return false;" target="targetIfr">-->
+        <label>场地：</label>
+        <select name="siteId" id="siteId" data-width="80px" style="width:150px; display: inline-block"
+                class="form-control">
+            <option th:each="site: ${siteList}" th:selected="${site.id}==${siteId}" th:text="${site.name}"
+                    th:value="${site.id}"></option>
+        </select>
+        <lable>设备名</lable>
+        <input type="text" name="name" id="name"/>
+        <lable>令牌</lable>
+        <input type="text" name="token" id="token"/>
+        <lable>info</lable>
+        <input type="text" name="info" id="info"/>
 
+    </form>
+    <button onclick="postNewDev()">添加</button>
+
+</div>
+
+<iframe name="targetIfr" style="display:none"></iframe>
 </body>
 </html>

@@ -21,6 +21,7 @@ function deviceManagement() {
     clearInterval(timerId);
     // console.debug("currentPage");
     $('#home-container').empty();
+    //目标div区域用新文本填充
     $('#home-container').load('/deviceManagement' + devManageUrlSuffix);
 }
 

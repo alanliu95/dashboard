@@ -28,8 +28,17 @@ public class SiteDaoTest {
     @Test
     public void MapTypeTest() throws Exception {
         List<Map<String, Object>> list = siteMapper.getAllWithMap();
+        //Map<String, Object> list = siteMapper.getAllWithMap();
         System.out.println(objectMapper.writeValueAsString(list));
     }
+
+    @Test
+    //resultType属性同样支持将查询结果映射到集合
+    public void resultTypeTest() {
+        List<Site> list = siteMapper.getAllWithResultType();
+        System.out.println(list);
+    }
+
     @Test
     public void SiteTest() {
 //        List<Site> list = siteMapper.getAll();

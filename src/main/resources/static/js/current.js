@@ -80,7 +80,7 @@ function startDisplay() {
     //设置当前设备名
     currDevName = document.getElementById("device").value;
 
-    timerId = setInterval(recordHandler, 4000);
+    timerId = setInterval(recordHandler, 2000);
 }
 
 function initSiteSlt() {

@@ -1,7 +1,7 @@
 package com.alan.dashboard.DAO.Mybatis;
 
 import com.alan.dashboard.model.Device;
-import com.alan.dashboard.model.DeviceMap;
+import com.alan.dashboard.model.SiteDevMap;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -21,7 +21,7 @@ public interface DeviceMapper {
 
     public void deleteDeviceById(int id);
 
-    public List<DeviceMap> getMap();
+    public List<SiteDevMap> getMap();
     //public void updateDevice(Device device);
     //public void deleteDeviceById(Device device);
 }

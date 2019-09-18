@@ -2,7 +2,7 @@ package com.alan.dashboard.model;
 
 import java.util.List;
 
-public class DeviceMap {
+public class SiteDevMap {
     private int siteId;
     private String siteName;
     List<Device> deviceList;
@@ -17,5 +17,14 @@ public class DeviceMap {
 
     public void setDeviceList(List<Device> deviceList) {
         this.deviceList = deviceList;
+    }
+
+    @Override
+    public String toString() {
+        return "SiteDevMap{" +
+                "siteId=" + siteId +
+                ", siteName='" + siteName + '\'' +
+                ", deviceList=" + deviceList +
+                '}';
     }
 }

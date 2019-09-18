@@ -40,7 +40,7 @@
         FROM devices where dev_name = #{name}
     </select>
 
-    <resultMap id="devSiteMap" type="com.alan.dashboard.model.DeviceMap">
+    <resultMap id="devSiteMap" type="com.alan.dashboard.model.SiteDevMap">
         <id property="siteId" column="site_id"/>
         <result property="siteName" column="site_name"/>
         <collection property="deviceList" ofType="com.alan.dashboard.model.Device">

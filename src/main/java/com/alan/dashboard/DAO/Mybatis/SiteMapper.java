@@ -10,9 +10,12 @@ import java.util.Map;
 //@Mapper
 @Repository
 public interface SiteMapper {
-    public List<Site> getAll();
+    List<Site> getAll();
+
+    List<Site> getAllWithResultType();
 
     public List<Map<String, Object>> getAllWithMap();
+    //public Map<String, Object> getAllWithMap();
 
     public void addSite(Site site);
 

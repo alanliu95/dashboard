@@ -2,8 +2,7 @@ package com.alan.dashboard;
 
 import com.alan.dashboard.DAO.Mybatis.DeviceMapper;
 import com.alan.dashboard.model.Device;
-import com.alan.dashboard.model.DeviceMap;
-import com.alan.dashboard.model.Site;
+import com.alan.dashboard.model.SiteDevMap;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +28,7 @@ public class DeviceDaoTest {
     //一对多
     @Test
     public void deviceMap() {
-        List<DeviceMap> map = deviceMapper.getMap();
+        List<SiteDevMap> map = deviceMapper.getMap();
         System.out.println(map);
     }
 }

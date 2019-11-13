@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alan.dashboard.DAO.Mybatis.UserDao">
+
+    <select id="findOne" resultType="com.alan.dashboard.model.security.User" parameterType="long">
+        SELECT id,username,password,salt,locked from sys_users where id=#{id}
+    </select>
+
+    <insert id="createUser" parameterType="com.alan.dashboard.model.security.User"
+            useGeneratedKeys="true" keyProperty="id">
+    insert into sys_users(id,username,password,salt,locked) values(#{id},#{username},#{password},#{salt},#{locked})
+    </insert>
+    <update id="updateUser" parameterType="com.alan.dashboard.model.security.User">
+        update sys_users set username=#{username}, password=#{password}, salt=#{salt}, locked=#{locked} where id=#{id}
+    </update>
+    <delete id="deleteUser" parameterType="long">
+        delete from sys_users where id=#{id}
+    </delete>
+
+    <insert id="correlationRole">
+        insert into sys_users_roles(user_id, role_id) values(#{userId},#{roleId})
+    </insert>
+
+    <delete id="uncorrelationRole">
+        delete from sys_users_roles where user_id=#{userId} and role_id=#{roleId}
+    </delete>
+
+    <select id="findByUsername" resultType="com.alan.dashboard.model.security.User" parameterType="String">
+        select id, username, password, salt, locked from sys_users where username=#{username}
+    </select>
+
+    <select id="findRoles" resultType="String" parameterType="String">
+    select role from sys_users u, sys_roles r,sys_users_roles ur where u.username=#{username} and u.id=ur.user_id and r.id=ur.role_id
+    </select>
+
+    <select id="findPermissions" parameterType="String">
+    select permission
+    from sys_users u, sys_roles r, sys_permissions p, sys_users_roles ur, sys_roles_permissions rp
+    where u.username=? and u.id=ur.user_id and r.id=ur.role_id and r.id=rp.role_id and p.id=rp.permission_id
+    </select>
+</mapper>

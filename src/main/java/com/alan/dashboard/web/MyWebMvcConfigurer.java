@@ -6,11 +6,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class MyWebMvcConfigurer implements WebMvcConfigurer {
-    @Override
+/*    @Override
     public void addInterceptors(InterceptorRegistry registry) {
 //        registry.addInterceptor(new ResourceInterceptor()).addPathPatterns("/**").excludePathPatterns("/login","/js/**","/css/**","/image/**");
 //        registry.addInterceptor(new ResourceInterceptor()).addPathPatterns("/history","/data/**");
         registry.addInterceptor(new ResourceInterceptor()).addPathPatterns("/**").excludePathPatterns("/login", "/js/**", "/css/**", "/image/**");
-    }
+    }*/
 
 }

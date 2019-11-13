@@ -15,6 +15,12 @@ create table devices(
   PRIMARY KEY (dev_id)
 )ENGINE=InnoDB;
 
+create table order(
+id int  not null auto_increment,
+
+  PRIMARY KEY (id)
+ );
+
 create table records(
   rec_id   int           not null auto_increment,
   dev_id   int           not null,

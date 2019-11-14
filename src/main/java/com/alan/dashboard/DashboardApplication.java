@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
+@ImportResource(locations = {"classpath:beans.xml"})
 @MapperScan("com.alan.dashboard.DAO.Mybatis")
 //@ImportResource(locations={"classpath:shiro.xml"})
 //@ImportResource(locations={"classpath:shiroTestBeans.xml"})
